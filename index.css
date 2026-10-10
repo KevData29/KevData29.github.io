@@ -170,10 +170,10 @@ h4.k:first-child { margin-top: 0; }
 .ico svg { width: 22px; height: 22px; }
 .cc .v { font-family: var(--font-mono); font-size: 15px; overflow-wrap: anywhere; }
 .cc .v.off { color: var(--muted); }
-.copy { background: var(--orange); border: 1px solid var(--line); border-radius: 3px; font-size: 12px; padding: 2px 10px; color: var(--navy); }
-.copy:hover { background: var(--navy); color: var(--white); }
+.copy { background: var(--white); border: 1px solid var(--line); border-radius: 3px; font-size: 12px; padding: 2px 10px; color: var(--navy); }
+.copy:hover { background: var(--navy); color: var(--navy-soft); }
 .open { font-size: 13px; font-weight: 500; }
-footer { background: var(--gray-dark); color: var(--on-navy-muted); padding-block: 24px; font-family: var(--font-mono); font-size: 12px; }
+footer { background: var(--navy); color: var(--on-navy-muted); padding-block: 24px; font-family: var(--font-mono); font-size: 12px; }
 
 /* Sombras y efectos de tarjetas */
 .pc, .tile, .cc, .tl { box-shadow: var(--sh-1); }
