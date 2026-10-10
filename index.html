@@ -39,7 +39,13 @@
   </div>
 </section>
 
-<section id="experiencia"><div class="in pad"><h2 id="h-exp" data-fx></h2><div class="tl" id="timeline" data-fx></div><div id="jobs"></div></div></section>
+<section id="experiencia" class="xp" data-tone="intro">
+  <div class="xp-bg" aria-hidden="true"><i class="bg-intro"></i><i class="bg-gold"></i><i class="bg-blue"></i></div>
+  <div class="xp-in" data-fx>
+    <div class="xp-nav" id="xp-nav" role="tablist"></div>
+    <div class="xp-view" id="xp-view"></div>
+  </div>
+</section>
 
 <section id="proyectos">
   <div class="in head-p"><h2 id="h-proj" data-fx></h2></div>
@@ -221,11 +227,11 @@
   var D = JSON.parse(document.getElementById('cv-data').textContent);
   var UI = {
     es: { nav: ['Inicio', 'Experiencia', 'Proyectos', 'Contacto'],
-          present: 'Actualidad', copy: 'Copiar', copied: 'Copiado', open: 'Abrir perfil →', pending: 'Enlace próximamente',
+          present: 'Actualidad', pick: 'Elige un puesto en la línea de tiempo', copy: 'Copiar', copied: 'Copiado', open: 'Abrir perfil →', pending: 'Enlace próximamente',
           about: 'Sobre mí', aboutasp: 'Sobre mí y aspiraciones', bg: 'Background', asp: 'Aspiraciones', detail: 'Ver detalle', hide: 'Ocultar detalle', role: 'Rol', org: 'Organización', period: 'Periodo', did: 'Funciones y aportes', tech: 'Habilidades técnicas', soft: 'Interpersonales', lang: 'Idiomas',
           exp: 'Experiencia', proj: 'Proyectos', contact: 'Contacto', tl: 'Línea cronológica', tools: 'Herramientas', method: 'Metodología', now: 'Actualmente', refs: 'Referencias disponibles bajo solicitud.' },
     en: { nav: ['Home', 'Experience', 'Projects', 'Contact'],
-          present: 'Present', copy: 'Copy', copied: 'Copied', open: 'Open profile →', pending: 'Link coming soon',
+          present: 'Present', pick: 'Choose a role on the timeline', copy: 'Copy', copied: 'Copied', open: 'Open profile →', pending: 'Link coming soon',
           about: 'About me', aboutasp: 'About me and aspirations', bg: 'Background', asp: 'Aspirations', detail: 'View details', hide: 'Hide details', role: 'Role', org: 'Organization', period: 'Period', did: 'What I did', tech: 'Technical skills', soft: 'Soft skills', lang: 'Languages',
           exp: 'Experience', proj: 'Projects', contact: 'Contact', tl: 'Timeline', tools: 'Tools', method: 'Methodology', now: 'Currently', refs: 'References available upon request.' }
   };
@@ -286,30 +292,6 @@
       '<div' + fx(1) + '><h3 class="lab">' + u.lang + '</h3>' + pills(t(D.languages), 'l') + '</div>';
   }
 
-  function renderTimeline() {
-    var u = UI[lang], now = nowYM();
-    var startY = 2024, endY = 2026, a0 = startY * 12, a1 = (endY + 1) * 12, span = a1 - a0;
-    var axis = '';
-    for (var y = startY; y <= endY; y++) axis += '<span style="left:' + ((y * 12 - a0) / span * 100) + '%">' + y + '</span>';
-    var rows = D.experience.slice().sort(function (a, b) { return mi(a.start) - mi(b.start); }).map(function (j) {
-      var s = mi(j.start), e = (j.end ? mi(j.end) : mi(now)) + 1;
-      var left = (s - a0) / span * 100, w = Math.max((e - s) / span * 100, 1);
-      return '<div class="tl-row"><div class="tl-label"><b>' + esc(t(j.title)) + '</b><span class="meta">' + esc(j.org) + ' · ' + fmt(j.start) + ' – ' + (j.end ? fmt(j.end) : u.present) + '</span></div>' +
-        '<div class="tl-track"><div class="tl-bar tone-' + (j.tone || 'navy') + '" style="left:' + left + '%;width:' + w + '%"></div></div></div>';
-    }).join('');
-    $('timeline').innerHTML = '<div class="meta" style="margin-bottom:6px">' + u.tl + '</div><div class="tl-axis" aria-hidden="true">' + axis + '</div>' + rows;
-  }
-
-  function renderJobs() {
-    var u = UI[lang];
-    $('h-exp').textContent = u.exp;
-    $('jobs').innerHTML = D.experience.map(function (j) {
-      return '<article class="job"' + fx(0) + '><div class="meta">' + fmt(j.start) + ' – ' + (j.end ? fmt(j.end) : u.present) + '</div><div>' +
-        '<h3><span class="sw tone-' + (j.tone || 'navy') + '"></span>' + esc(t(j.title)) + (j.end ? '' : '<span class="badge">' + u.present.toUpperCase() + '</span>') + '</h3>' +
-        '<div class="org">' + esc(j.org) + ' · ' + esc(j.place) + '</div>' + ul(t(j.bullets)) + '</div></article>';
-    }).join('');
-  }
-
   function renderProjects() {
     var u = UI[lang];
     $('h-proj').textContent = u.proj;
@@ -347,6 +329,75 @@
     $('foot').textContent = D.name + ' · ' + u.refs;
   }
 
+  /* Experiencia: línea de tiempo como selector de puestos */
+  var xpSel = -1, xpPillOn = false;
+  function xpJobs() { return D.experience.slice().sort(function (a, b) { return mi(a.start) - mi(b.start); }); }
+  function xpTheme(j) { return j.theme || (/dhl/i.test(j.org) ? 'gold' : 'blue'); }
+  function renderExperience() {
+    var u = UI[lang], jobs = xpJobs(), now = new Date().getFullYear();
+    var y0 = Math.min.apply(null, jobs.map(function (j) { return +j.start.slice(0, 4); }));
+    var y1 = Math.max.apply(null, jobs.map(function (j) { return j.end ? +j.end.slice(0, 4) : now; }));
+    $('xp-nav').setAttribute('aria-label', u.exp);
+    $('xp-nav').innerHTML = '<span class="xp-pill" id="xp-pill" aria-hidden="true"></span>' + jobs.map(function (j, i) {
+      return '<button class="xp-tab" type="button" role="tab" id="xt' + i + '" aria-controls="xp' + i + '" aria-selected="false" tabindex="-1" data-i="' + i + '"><span class="xp-label">' + esc(t(j.title)) + '</span></button>';
+    }).join('');
+    $('xp-view').innerHTML =
+      '<div class="xp-panel xp-intro" id="xp-intro"><h2 class="xp-title">' + u.exp + '</h2><div class="xp-years">' + y0 + '-' + y1 + '</div>' +
+      '<div class="xp-hint">' + svg('<path d="M15 6l-6 6 6 6"/>', 'xp-chev') + '<span>' + u.pick + '</span></div></div>' +
+      jobs.map(function (j, i) {
+        return '<article class="xp-panel xp-job" id="xp' + i + '" role="tabpanel" aria-labelledby="xt' + i + '"><h3>' + esc(t(j.title)) + '</h3>' +
+          '<p class="xp-org">' + esc(j.org) + ' · ' + esc(j.place) + '</p>' +
+          '<p class="xp-when">' + fmt(j.start) + ' – ' + (j.end ? fmt(j.end) : u.present) + '</p><ul>' +
+          t(j.bullets).map(function (b, k) { return '<li style="--i:' + k + '">' + esc(b) + '</li>'; }).join('') + '</ul></article>';
+      }).join('');
+    xpPillOn = false;
+    xpSelect(xpSel);
+  }
+  function xpPill() {
+    var nav = $('xp-nav'), pill = $('xp-pill'); if (!nav || !pill) return;
+    var tab = xpSel >= 0 ? nav.querySelectorAll('.xp-tab')[xpSel] : null;
+    if (!tab) { pill.style.opacity = '0'; xpPillOn = false; return; }
+    var a = nav.getBoundingClientRect(), b = tab.querySelector('.xp-label').getBoundingClientRect();
+    if (!xpPillOn) pill.style.transition = 'none';
+    pill.style.left = (b.left - a.left + nav.scrollLeft - 20) + 'px';
+    pill.style.top = (b.top - a.top + nav.scrollTop - 12) + 'px';
+    pill.style.width = (b.width + 40) + 'px';
+    pill.style.height = (b.height + 24) + 'px';
+    pill.style.opacity = '1';
+    if (!xpPillOn) { void pill.offsetWidth; pill.style.transition = ''; xpPillOn = true; }
+  }
+  function xpSelect(i, focus) {
+    var jobs = xpJobs(); xpSel = i;
+    $('experiencia').setAttribute('data-tone', i < 0 ? 'intro' : xpTheme(jobs[i]));
+    document.querySelectorAll('#xp-nav .xp-tab').forEach(function (tb, k) {
+      tb.setAttribute('aria-selected', String(k === i));
+      tb.setAttribute('tabindex', (k === i || (i < 0 && k === 0)) ? '0' : '-1');
+    });
+    $('xp-intro').classList.toggle('on', i < 0);
+    jobs.forEach(function (j, k) { $('xp' + k).classList.toggle('on', k === i); });
+    var nv = $('xp-nav');
+    if (i >= 0 && nv.scrollWidth > nv.clientWidth) nv.scrollTo({ left: Math.max(0, $('xt' + i).offsetLeft - 16), behavior: 'smooth' });
+    xpPill();
+    if (focus && i >= 0) $('xt' + i).focus({ preventScroll: true });
+  }
+  $('xp-nav').addEventListener('click', function (ev) {
+    var b = ev.target.closest('.xp-tab'); if (!b) return;
+    var i = +b.getAttribute('data-i');
+    xpSelect(xpSel === i ? -1 : i);
+  });
+  $('xp-nav').addEventListener('keydown', function (ev) {
+    var n = xpJobs().length, k = ev.key, i = xpSel;
+    if (k === 'ArrowDown' || k === 'ArrowRight') i = i < 0 ? 0 : (i + 1) % n;
+    else if (k === 'ArrowUp' || k === 'ArrowLeft') i = i < 0 ? n - 1 : (i - 1 + n) % n;
+    else if (k === 'Home') i = 0;
+    else if (k === 'End') i = n - 1;
+    else if (k === 'Escape') { xpSelect(-1); return; }
+    else return;
+    ev.preventDefault(); xpSelect(i, true);
+  });
+  window.addEventListener('resize', function () { xpPillOn = false; xpPill(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { xpPillOn = false; xpPill(); });
+
   function setupFx() {
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (io) io.disconnect();
@@ -371,7 +422,7 @@
     SECTIONS.forEach(function (id) { spy.observe($(id)); });
   }
 
-  function render() { renderTop(); renderHome(); renderTimeline(); renderJobs(); renderProjects(); renderContact(); setupFx(); }
+  function render() { renderTop(); renderHome(); renderExperience(); renderProjects(); renderContact(); setupFx(); }
   render(); setupSpy();
 
   function setLang(l) { lang = l; try { localStorage.setItem('cv-lang', l); } catch (e) {} render(); }
