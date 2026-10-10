@@ -330,9 +330,9 @@ footer { background: var(--navy); color: var(--on-navy-muted); padding-block: 24
 }
 
 /* Experiencia: tarjeta con fondo de nodos (hilos y chinches) */
-#experiencia.xp { --card: 255,255,255; --card-a: .74; }
-#experiencia.xp[data-tone="gold"] { --card: 255,248,205; --card-a: .74; }
-#experiencia.xp[data-tone="blue"] { --card: 255,255,255; --card-a: .78; }
+#experiencia.xp { --card: 255,255,255; --card-a: .35; }
+#experiencia.xp[data-tone="gold"] { --card: 255,248,205; --card-a: .35; }
+#experiencia.xp[data-tone="blue"] { --card: 255,255,255; --card-a: .35; }
 .xp-card { position: relative; align-self: center; overflow: hidden; min-width: 0; min-height: 440px; display: grid; align-items: center; padding: 52px 56px; border-radius: 22px; background: rgba(var(--card), var(--card-a)); border: 1px solid rgba(var(--glow), .0); box-shadow: 0 0 0 1px var(--edge), 0 24px 60px -18px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background .7s ease, box-shadow .7s ease; }
 .xp-card::after { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 5px; background: var(--edge); transition: background .7s ease; }
 .xp-net { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
