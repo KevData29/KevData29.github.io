@@ -23,9 +23,9 @@ img { max-width: 100%; }
   --green: #C4E3C9;
   --sky: #BFE3F5;
   /* Aparición al hacer scroll: ajusta estos valores */
-  --fx-dur: 1.4s;      /* duración del efecto */
+  --fx-dur: 1.9s;      /* duración del efecto */
   --fx-dist: 18px;     /* distancia que sube al aparecer */
-  --fx-blur: 10px;     /* desenfoque inicial */
+  --fx-blur: 20px;     /* desenfoque inicial */
   --fx-scale: .985;    /* escala inicial */
   --fx-step: .08s;     /* retraso entre elementos del mismo grupo */
   --sh-1: 0 2px 6px rgba(18,41,79,.08), 0 12px 26px -10px rgba(18,41,79,.28);
