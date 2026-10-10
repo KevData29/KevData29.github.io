@@ -97,7 +97,7 @@ h3 { font-size: 17px; font-weight: 600; margin: 0; }
 /* Habilidades técnicas: iconos grises */
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 12px; }
 .tile { background: var(--gray-light); border-radius: 4px; padding: 20px 12px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; color: var(--gray-dark); font-size: 14px; font-weight: 500; min-width: 0; }
-.tile svg { width: 40px; height: 40px; color: var(--gray-icon); }
+.tile svg { width: 40px; height: 40px; color: var(--gray-icon); filter: drop-shadow(0 1px 1.5px rgba(18,41,79,.35)); }
 .pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .pill { font-size: 13.5px; border-radius: 3px; padding: 2px 11px; color: var(--navy); }
 .pill.o { background: var(--orange); } .pill.y { background: var(--yellow); } .pill.g { background: var(--green); } .pill.l { background: var(--gray-light); }
