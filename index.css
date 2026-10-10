@@ -262,3 +262,6 @@ footer { background: var(--navy); color: var(--on-navy-muted); padding-block: 24
     50% { filter: drop-shadow(0 0 8px rgba(var(--glow, 188,214,255), .85)) drop-shadow(0 0 22px rgba(var(--glow, 188,214,255), .5)); }
   }
 }
+@media (min-width: 900px) {
+  :root { --fx-dur: 2.3s; --fx-dist: 42px; --fx-blur: 20px; --fx-step: .14s; }
+}
