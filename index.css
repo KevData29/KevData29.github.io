@@ -23,9 +23,9 @@ img { max-width: 100%; }
   --green: #C4E3C9;
   --sky: #BFE3F5;
   /* Aparición al hacer scroll: ajusta estos valores */
-  --fx-dur: 1.9s;      /* duración del efecto */
-  --fx-dist: 22px;     /* distancia que sube al aparecer */
-  --fx-blur: 15px;     /* desenfoque inicial */
+  --fx-dur: 1.5s;      /* duración del efecto */
+  --fx-dist: 24px;     /* distancia que sube al aparecer */
+  --fx-blur: 11px;     /* desenfoque inicial */
   --fx-scale: .985;    /* escala inicial */
   --fx-step: .08s;     /* retraso entre elementos del mismo grupo */
   --sh-1: 0 2px 6px rgba(18,41,79,.08), 0 12px 26px -10px rgba(18,41,79,.28);
@@ -70,7 +70,7 @@ h3 { font-size: 17px; font-weight: 600; margin: 0; }
 /* Inicio: portada */
 .hero { background: var(--navy); color: var(--white); }
 .hero .pad { padding-block: 80px 88px; }
-.role { font-family: var(--font-mono); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--yellow); margin: 0 0 12px; }
+.role { font-family: var(--font-mono); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var( --gray-light); margin: 0 0 12px; }
 #name { font-family: var(--font-display); font-weight: 700; font-size: clamp(44px, 9vw, 92px); line-height: .95; margin: 0 0 24px; text-transform: uppercase; text-wrap: balance; }
 .lead { max-width: 58ch; font-size: 18px; color: var(--on-navy-muted); margin: 0 0 28px; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -99,7 +99,7 @@ h3 { font-size: 17px; font-weight: 600; margin: 0; }
 .tile { background: var(--gray-light); border-radius: 4px; padding: 20px 12px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; color: var(--gray-dark); font-size: 14px; font-weight: 500; min-width: 0; }
 .tile svg { width: 40px; height: 40px; color: var(--gray-icon); filter: drop-shadow(0 1px 1.5px rgba(18,41,79,.35)); }
 .pills { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill { font-size: 13.5px; border-radius: 3px; padding: 2px 11px; color: var(--navy); }
+.pill { font-size: 13.5px; border-radius: 3px; padding: 2px 11px; color: var(--gray-dark); }
 .pill.o { background: var(--orange); } .pill.y { background: var(--yellow); } .pill.g { background: var(--green); } .pill.l { background: var(--gray-light); }
 .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px; margin-top: 24px; }
 .two .lab { color: var(--muted); }
