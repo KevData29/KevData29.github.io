@@ -9,8 +9,8 @@
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<linearGradient id="m-gold" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="21" y2="22"><stop offset="0" stop-color="#7A5A14"/><stop offset=".25" stop-color="#E6C25E"/><stop offset=".45" stop-color="#FFF3B8"/><stop offset=".65" stop-color="#C79A32"/><stop offset=".85" stop-color="#F0D27A"/><stop offset="1" stop-color="#6E4F10"/></linearGradient>
-<linearGradient id="m-silver" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="21" y2="22"><stop offset="0" stop-color="#3A404B"/><stop offset=".25" stop-color="#8A92A0"/><stop offset=".45" stop-color="#E4E8EE"/><stop offset=".65" stop-color="#626A78"/><stop offset=".85" stop-color="#B3BAC6"/><stop offset="1" stop-color="#363C47"/></linearGradient>
+<linearGradient id="m-gold" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="21" y2="22"><stop offset="0" stop-color="#B8892B"/><stop offset=".25" stop-color="#F2CF73"/><stop offset=".45" stop-color="#FFF6CF"/><stop offset=".65" stop-color="#D9A93F"/><stop offset=".85" stop-color="#F6DE8E"/><stop offset="1" stop-color="#B07F22"/></linearGradient>
+<linearGradient id="m-silver" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="21" y2="22"><stop offset="0" stop-color="#8A92A0"/><stop offset=".25" stop-color="#C9CFD9"/><stop offset=".45" stop-color="#FFFFFF"/><stop offset=".65" stop-color="#A3ABB8"/><stop offset=".85" stop-color="#E3E7EE"/><stop offset="1" stop-color="#7D8593"/></linearGradient>
 </defs></svg>
 <header class="top">
   <div class="in">
@@ -279,7 +279,7 @@
       '<div class="pc t-yellow"' + fx(1) + '><h3 class="lab">' + u.bg + '</h3>' + ul(t(D.background)) + '</div>';
     $('h-tech').textContent = u.tech;
     $('tiles').innerHTML = D.tech.map(function (k, i) {
-      return '<div class="tile"' + fx(i) + '>' + svg(ICON[k.icon] || ICON.office, '', k.metal) + '<span>' + esc(t(k.label)) + '</span></div>';
+      return '<div class="tile' + (k.metal ? ' m-' + k.metal : '') + '"' + fx(i) + '>' + svg(ICON[k.icon] || ICON.office, '', k.metal) + '<span>' + esc(t(k.label)) + '</span></div>';
     }).join('');
     $('extras').innerHTML =
       '<div' + fx(0) + '><h3 class="lab">' + u.soft + '</h3>' + pills(t(D.soft), 'l') + '</div>' +
@@ -389,6 +389,12 @@
     openSet[i] = !openSet[i];
     b.closest('.strip').classList.toggle('open', !!openSet[i]);
     b.setAttribute('aria-expanded', String(!!openSet[i]));
+  });
+  $('tiles').addEventListener('pointermove', function (ev) {
+    var tl = ev.target.closest('.tile'); if (!tl) return;
+    var r = tl.getBoundingClientRect();
+    tl.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+    tl.style.setProperty('--my', (ev.clientY - r.top) + 'px');
   });
   $('contact').addEventListener('click', function (ev) {
     var b = ev.target.closest('.copy'); if (!b) return;

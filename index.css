@@ -239,3 +239,26 @@ footer { background: var(--navy); color: var(--on-navy-muted); padding-block: 24
     @keyframes progress { to { transform: scaleX(1); } }
   }
 }
+
+/* Habilidades: metales con glow sobre azul oscuro */
+.tile { position: relative; overflow: hidden; background: var(--navy); color: var(--white); }
+.tile.m-gold { --glow: 246,208,104; }
+.tile.m-silver { --glow: 188,214,255; }
+.tile svg { filter: drop-shadow(0 0 5px rgba(var(--glow, 188,214,255), .55)) drop-shadow(0 0 14px rgba(var(--glow, 188,214,255), .3)); }
+.tile::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s ease; background: radial-gradient(150px circle at var(--mx, 50%) var(--my, 30%), rgba(var(--glow, 188,214,255), .22), transparent 70%); }
+.tile:hover::before { opacity: 1; }
+
+/* Halos en los iconos de contacto, rejilla de plano en la portada y luz en el menú activo */
+.cc .ico.tone-orange { box-shadow: 0 0 0 5px rgba(247,211,178,.45), 0 0 26px rgba(240,170,100,.55); }
+.cc .ico.tone-yellow { box-shadow: 0 0 0 5px rgba(246,232,174,.5), 0 0 26px rgba(225,195,70,.55); }
+.cc .ico.tone-green { box-shadow: 0 0 0 5px rgba(196,227,201,.5), 0 0 26px rgba(90,170,110,.5); }
+.hero { background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 44px 44px; background-position: -1px -1px; }
+.nav a.on { text-shadow: 0 0 10px rgba(246,232,174,.7); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .tile svg { animation: floaty 5s ease-in-out infinite, breathe 4.5s ease-in-out infinite; }
+  @keyframes breathe {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(var(--glow, 188,214,255), .4)) drop-shadow(0 0 10px rgba(var(--glow, 188,214,255), .2)); }
+    50% { filter: drop-shadow(0 0 8px rgba(var(--glow, 188,214,255), .85)) drop-shadow(0 0 22px rgba(var(--glow, 188,214,255), .5)); }
+  }
+}
