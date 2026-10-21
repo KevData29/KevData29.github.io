@@ -314,8 +314,8 @@ footer { background: var(--navy); color: var(--on-navy-muted); padding-block: 24
 .skills .sub { margin: 0; }
 .skills .sub h3 { text-align: center; font-family: var(--font-display); font-weight: 500; font-size: clamp(30px, 4.4vw, 46px); letter-spacing: .03em; text-transform: uppercase; color: var(--navy); margin: 0 0 36px; }
 .skills .pill.l { background: var(--white); }
-.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 700px; margin: 0 auto; }
-@media (min-width: 600px) { .tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; } }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 600px; margin: 0 auto; }
+@media (min-width: 600px) { .tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 25px; } }
 .tile { position: relative; aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; background: #fff; border-radius: 26px; box-shadow: 0 2px 4px rgba(45,61,86,.06), 0 14px 28px -14px rgba(45,61,86,.35); outline-offset: 3px; transition: box-shadow .4s ease; }
 .tile:focus-visible { outline: 2px solid var(--navy); }
 .tile .sk { display: block; width: 76%; aspect-ratio: 1; background-size: contain; background-position: center; background-repeat: no-repeat; transition: transform .5s cubic-bezier(.22,.61,.36,1); }
@@ -323,7 +323,7 @@ footer { background: var(--navy); color: var(--on-navy-muted); padding-block: 24
 .tile::after { content: attr(data-name); position: absolute; left: 50%; bottom: 9px; transform: translate(-50%, 140%); opacity: 0; white-space: nowrap; max-width: 92%; overflow: hidden; text-overflow: ellipsis; background: var(--navy); color: var(--white); border-radius: 999px; padding: 3px 12px; font-size: 12.5px; font-weight: 600; letter-spacing: .03em; transition: transform .45s cubic-bezier(.22,.61,.36,1), opacity .35s ease; }
 .tile:hover, .tile:focus-visible { box-shadow: 0 4px 8px rgba(45,61,86,.1), 0 26px 40px -14px rgba(45,61,86,.5); }
 .tile:hover::before, .tile:focus-visible::before { opacity: 0; }
-.tile:hover::after, .tile:focus-visible::after { transform: translate(-50%, 0); opacity: 1; }
+.tile:hover::after, .tile:focus-visible::after { transform: translate(-50%, 0); opacity: 0; }
 .tile:hover .sk, .tile:focus-visible .sk { transform: scale(.86) translateY(-9px); }
 @media (prefers-reduced-motion: no-preference) {
   .tile:hover, .tile:focus-visible { translate: 0 -6px; }
