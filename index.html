@@ -8,10 +8,6 @@
 <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<linearGradient id="m-gold" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="21" y2="22"><stop offset="0" stop-color="#8A6000"/><stop offset=".3" stop-color="#D9A21F"/><stop offset=".5" stop-color="#F6D567"/><stop offset=".75" stop-color="#B07A0C"/><stop offset="1" stop-color="#7A5200"/></linearGradient>
-<linearGradient id="m-silver" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="21" y2="22"><stop offset="0" stop-color="#38414F"/><stop offset=".3" stop-color="#6B768A"/><stop offset=".5" stop-color="#AAB3C2"/><stop offset=".75" stop-color="#515B6D"/><stop offset="1" stop-color="#2E3644"/></linearGradient>
-</defs></svg>
 <header class="top">
   <div class="in">
     <span class="brand">KM</span>
@@ -32,9 +28,11 @@
       <div class="chips" id="chips" data-fx style="--d:.24s"></div>
     </div>
   </div>
-  <div class="in pad">
-    <div class="sub first"><h3 id="h-tech" data-fx></h3><div class="tiles" id="tiles"></div></div>
-    <div class="two" id="extras"></div>
+  <div class="skills">
+    <div class="in pad">
+      <div class="sub"><h3 id="h-tech" data-fx></h3><div class="tiles" id="tiles"></div></div>
+      <div class="two" id="extras"></div>
+    </div>
   </div>
 </section>
 
@@ -81,14 +79,16 @@
   },
   "focus": { "es": ["Analista de datos", "Mejora continua","Soluciones con ia"], "en": ["Data Analyst", "Continuous improvement","AI Solutions"] },
   "tech": [
-    { "icon": "office", "metal": "gold", "label": { "es": "Microsoft Office", "en": "Microsoft Office" } },
-    { "icon": "excel", "metal": "gold", "label": { "es": "Excel", "en": "Excel" } },
-    { "icon": "chart", "metal": "silver", "label": { "es": "Power BI", "en": "Power BI" } },
-    { "icon": "db", "metal": "gold", "label": { "es": "SQL", "en": "SQL" } },
-    { "icon": "cloud", "metal": "silver", "label": { "es": "Salesforce", "en": "Salesforce" } },
-    { "icon": "share", "metal": "silver", "label": { "es": "SharePoint", "en": "SharePoint" } },
-    { "icon": "erp", "metal": "silver", "label": { "es": "Oracle JD Edwards", "en": "Oracle JD Edwards" } },
-    { "icon": "canva", "metal": "gold", "label": { "es": "Canva", "en": "Canva" } }
+    { "icon": "excel", "label": { "es": "Excel", "en": "Excel" } },
+    { "icon": "word", "label": { "es": "Word", "en": "Word" } },
+    { "icon": "powerpoint", "label": { "es": "PowerPoint", "en": "PowerPoint" } },
+    { "icon": "canva", "label": { "es": "Canva", "en": "Canva" } },
+    { "icon": "powerbi", "label": { "es": "Power BI", "en": "Power BI" } },
+    { "icon": "sql", "label": { "es": "SQL", "en": "SQL" } },
+    { "icon": "salesforce", "label": { "es": "Salesforce", "en": "Salesforce" } },
+    { "icon": "oracle", "label": { "es": "Oracle JD Edwards", "en": "Oracle JD Edwards" } },
+    { "icon": "sheets", "label": { "es": "Google Sheets", "en": "Google Sheets" } },
+    { "icon": "claude", "label": { "es": "Claude", "en": "Claude" } }
   ],
   "soft": {
     "es": ["Pensamiento crítico y analítico", "Trabajo en equipo", "Adaptabilidad", "Orientación a resultados"],
@@ -229,25 +229,17 @@
   var UI = {
     es: { nav: ['Inicio', 'Experiencia', 'Proyectos', 'Contacto'],
           present: 'Actualidad', pick: 'Elige un puesto en la línea de tiempo', copy: 'Copiar', copied: 'Copiado', open: 'Abrir perfil →', pending: 'Enlace próximamente',
-          about: 'Sobre mí', aboutasp: 'Sobre mí y aspiraciones', bg: 'Background', asp: 'Aspiraciones', detail: 'Ver detalle', hide: 'Ocultar detalle', role: 'Rol', org: 'Organización', period: 'Periodo', did: 'Funciones y aportes', tech: 'Habilidades técnicas', soft: 'Interpersonales', lang: 'Idiomas',
+          about: 'Sobre mí', aboutasp: 'Sobre mí y aspiraciones', bg: 'Background', asp: 'Aspiraciones', detail: 'Ver detalle', hide: 'Ocultar detalle', role: 'Rol', org: 'Organización', period: 'Periodo', did: 'Funciones y aportes', tech: 'Habilidades', soft: 'Interpersonales', lang: 'Idiomas',
           exp: 'Experiencia', proj: 'Proyectos', contact: 'Contacto', tl: 'Línea cronológica', tools: 'Herramientas', method: 'Metodología', now: 'Actualmente', refs: 'Referencias disponibles bajo solicitud.' },
     en: { nav: ['Home', 'Experience', 'Projects', 'Contact'],
           present: 'Present', pick: 'Choose a role on the timeline', copy: 'Copy', copied: 'Copied', open: 'Open profile →', pending: 'Link coming soon',
-          about: 'About me', aboutasp: 'About me and aspirations', bg: 'Background', asp: 'Aspirations', detail: 'View details', hide: 'Hide details', role: 'Role', org: 'Organization', period: 'Period', did: 'What I did', tech: 'Technical skills', soft: 'Soft skills', lang: 'Languages',
+          about: 'About me', aboutasp: 'About me and aspirations', bg: 'Background', asp: 'Aspirations', detail: 'View details', hide: 'Hide details', role: 'Role', org: 'Organization', period: 'Period', did: 'What I did', tech: 'Skills', soft: 'Soft skills', lang: 'Languages',
           exp: 'Experience', proj: 'Projects', contact: 'Contact', tl: 'Timeline', tools: 'Tools', method: 'Methodology', now: 'Currently', refs: 'References available upon request.' }
   };
   var MES = { es: ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'], en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'] };
   var SECTIONS = ['inicio', 'experiencia', 'proyectos', 'contacto'];
   function svg(body, cls, metal) { return '<svg' + (cls ? ' class="' + cls + '"' : '') + ' viewBox="0 0 24 24" fill="' + (metal ? 'url(#m-' + metal + ')' : 'none') + '"' + (metal ? ' fill-opacity=".16"' : '') + ' stroke="' + (metal ? 'url(#m-' + metal + ')' : 'currentColor') + '" stroke-width="' + (metal ? '1.8' : '1.5') + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + body + '</svg>'; }
   var ICON = {
-    office: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',
-    chart: '<rect x="4" y="11" width="4" height="9" rx="1"/><rect x="10" y="4" width="4" height="16" rx="1"/><rect x="16" y="8" width="4" height="12" rx="1"/>',
-    db: '<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>',
-    cloud: '<path d="M7 18a4 4 0 0 1-.6-7.95A5.5 5.5 0 0 1 17 8.6 4.7 4.7 0 0 1 17.5 18z"/>',
-    share: '<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>',
-    excel: '<rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M8.5 8l7 8M15.5 8l-7 8"/>',
-    canva: '<circle cx="12" cy="12" r="9"/><path d="M15.6 9.4a4.6 4.6 0 1 0 0 5.2"/>',
-    erp: '<rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/>',
     email: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
     phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
     linkedin: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
@@ -285,7 +277,8 @@
       '<span class="chip">' + esc(D.location) + '</span>';
     $('h-tech').textContent = u.tech;
     $('tiles').innerHTML = D.tech.map(function (k, i) {
-      return '<div class="tile' + (k.metal ? ' m-' + k.metal : '') + '"' + fx(i) + '>' + svg(ICON[k.icon] || ICON.office, '', k.metal) + '<span>' + esc(t(k.label)) + '</span></div>';
+      var nm = esc(t(k.label));
+      return '<div class="tile" tabindex="0" role="img" aria-label="' + nm + '" data-name="' + nm + '" data-fx style="--i:' + ((i % 5) + Math.floor(i / 5)) + '"><i class="sk sk-' + esc(k.icon) + '"></i></div>';
     }).join('');
     $('extras').innerHTML =
       '<div' + fx(0) + '><h3 class="lab">' + u.soft + '</h3>' + pills(t(D.soft), 'l') + '</div>' +
