@@ -38,7 +38,7 @@ img { max-width: 100%; }
   --on-navy-muted: rgba(211,228,234,.85);
   --line: #d9d9d9;
   /* Fuente: Barlow en títulos (heading), texto (body) y etiquetas */
-  --font-display: "Barlow", system-ui, sans-serif;
+  --font-display: "Roboto Condensed", system-ui, sans-serif;
   --font-body: "Barlow", system-ui, sans-serif;
   --font-mono: "Barlow", system-ui, sans-serif;
 }
