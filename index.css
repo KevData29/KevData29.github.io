@@ -24,11 +24,11 @@ img { max-width: 100%; }
   --green: #83a6c2;
   --sky: #d3e4ea;
   /* Aparición al hacer scroll: ajusta estos valores */
-  --fx-dur: 0.30s;      /* duración del efecto */
-  --fx-dist: 24px;     /* distancia que sube al aparecer */
-  --fx-blur: 10px;     /* desenfoque inicial */
-  --fx-scale: .985;    /* escala inicial */
-  --fx-step: .08s;     /* retraso entre elementos del mismo grupo */
+  --fx-dur: 0.60s;      /* duración del efecto */
+  --fx-dist: 12px;     /* distancia que sube al aparecer */
+  --fx-blur: 5px;     /* desenfoque inicial */
+  --fx-scale: .99;    /* escala inicial */
+  --fx-step: .05s;     /* retraso entre elementos del mismo grupo */
   --sh-1: 0 2px 6px rgba(45,61,86,.08), 0 12px 26px -10px rgba(45,61,86,.28);
   --sh-2: 0 4px 10px rgba(45,61,86,.12), 0 24px 44px -14px rgba(45,61,86,.42);
   --sh-sky: 0 6px 14px rgba(45,61,86,.12), 0 30px 54px -18px rgba(131,166,194,.6);
